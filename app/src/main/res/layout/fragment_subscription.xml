@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SubscriptionFragment"
+    android:orientation="vertical">
+
+    <EditText android:id="@+id/phoneNumber"
+        android:layout_gravity="center_horizontal|top"
+        android:gravity="center_horizontal|top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:textSize="@dimen/phoneHintSize"
+        android:hint="@string/helpPhoneHint"
+        android:layout_margin="10dp"/>
+
+    <EditText android:id="@+id/areaCode"
+        android:layout_gravity="center_horizontal|top"
+        android:gravity="center_horizontal|top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:textSize="@dimen/phoneHintSize"
+        android:hint="@string/helpCodeHint"
+        android:layout_margin="10dp"/>
+
+
+        <Button
+            android:id="@+id/createUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/create"
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal|top"
+            android:textSize="@dimen/subscribeSize" />
+
+</LinearLayout>

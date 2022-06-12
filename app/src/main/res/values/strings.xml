@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">A.S.A.P.</string>
+
+    <string name="addAreaCode">Add</string>
+    <string name="addAreaCode_title">Subscribe to Area</string>
+    <string name="deleteAreaCode">Delete</string>
+    <string name="deleteAreaCode_title">Unsubscribe to an Area</string>
+    <string name="selectAreaCode">Select</string>
+    <string name="selectAreaCode_title">Select an Area</string>
+
+    <string name="refreshCodes">Refresh the Areas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logOut">Log Out</string>
+    <string name="helpPhoneHint">Phone Number</string>
+    <string name="loginText">Login</string>
+    <string name="create">Subscribe</string>
+    <string name="helpCodeHint">Area Code</string>
+    <string name="logIn">Log In</string>
+    <string name="signUp">Sign Up</string>
+    <string name="subscription">Sign Up - Active Shooter Alert Platform</string>
+    <string name="register">Register</string>
+</resources>

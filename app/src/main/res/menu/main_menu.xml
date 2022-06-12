@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/addAreaCode"
+        android:title="@string/addAreaCode"
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/deleteAreaCode"
+        android:title="@string/deleteAreaCode_title"
+        android:icon="@android:drawable/ic_menu_delete"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/refreshCodes"
+        android:title="@string/refreshCodes"
+        android:icon="@android:drawable/ic_menu_rotate"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/logOut"
+        android:title="@string/logOut"
+        android:icon="@android:drawable/ic_menu_set_as"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/selectAreaCode"
+        android:title="@string/selectAreaCode_title"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        app:showAsAction="always"/>
+</menu>
