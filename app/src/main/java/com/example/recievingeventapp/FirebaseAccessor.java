@@ -195,7 +195,8 @@ public class FirebaseAccessor {
                             List<Long> areaCodes = (ArrayList<Long>) data.get(AREA_CODES_KEY);
                             for (int i = 0; i < areaCodes.size(); i++)
                             {
-                                if (areaCodes.get(i) == areaCode) {
+                                System.out.println(areaCode + ", " + areaCodes.get(i));
+                                if (areaCodes.get(i).equals(areaCode)) {
                                     areaCodes.remove(areaCode);
                                     data.put(AREA_CODES_KEY, areaCodes);
                                     database.collection(USER_DATABASE)
@@ -245,7 +246,7 @@ public class FirebaseAccessor {
                             List<Long> areaCodes = (ArrayList<Long>) data.get(AREA_CODES_KEY);
                             for (int i = 0; i < areaCodes.size(); i++)
                             {
-                                if (areaCodes.get(i) == areaCode)
+                                if (areaCodes.get(i).equals(areaCode))
                                 {
                                     listener.onFailure("This code has already been added.");
                                     return;

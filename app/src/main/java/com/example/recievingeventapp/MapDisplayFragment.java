@@ -59,6 +59,12 @@ public class MapDisplayFragment extends Fragment
         public String getDesc() {
             return desc;
         }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return latitude + ", " + longitude + "; " + desc;
+        }
     }
 
     public void setMap(Long code)
@@ -251,9 +257,10 @@ public class MapDisplayFragment extends Fragment
 
     private void addMarker(EventItem e)
     {
+        Log.d(TAG, e.toString());
         MarkerOptions markers = new MarkerOptions();
         markers.position(new LatLng(e.getLatitude(), e.getLongitude()));
-        Log.d(TAG, new LatLng(e.getLatitude(), e.getLongitude()) + " --- lat-long coords");
+//        Log.d(TAG, new LatLng(e.getLatitude(), e.getLongitude()) + " --- lat-long coords");
         markers.title(e.getDesc());
         map.addMarker(markers);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(markers.getPosition(), 10));
