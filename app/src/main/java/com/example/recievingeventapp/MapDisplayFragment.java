@@ -85,6 +85,7 @@ public class MapDisplayFragment extends Fragment
                                             @Override
                                             public void onSuccess(String successMessage) {
                                                 Toast.makeText(getContext(), successMessage, Toast.LENGTH_SHORT).show();
+                                                map.clear();
                                                 for (int i = 0; i < items.size(); i++)
                                                 {
                                                     addMarker(items.get(i));
