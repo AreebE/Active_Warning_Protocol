@@ -8,6 +8,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,19 @@ import androidx.fragment.app.DialogFragment;
 
 
 public class SelectEventFragment extends DialogFragment {
+
+    public interface Listener
+    {
+        public void onEventSelected(FirebaseAccessor.EventType event);
+    }
+
+    private Listener listener;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.listener = (Listener) getParentFragment();
+    }
 
     private class EventAdapter extends ArrayAdapter<FirebaseAccessor.EventType>
     {
@@ -49,6 +63,8 @@ public class SelectEventFragment extends DialogFragment {
             System.out.println(image);
             return convertView;
         }
+
+
     }
 
     public SelectEventFragment() {
@@ -82,6 +98,14 @@ public class SelectEventFragment extends DialogFragment {
         View v = onCreateView(getLayoutInflater(), null, savedInstanceState);
         ListView listView = v.findViewById(R.id.list_of_events);
         listView.setAdapter(new EventAdapter(getContext()));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                FirebaseAccessor.EventType item = ((EventAdapter) listView.getAdapter()).getItem(position);
+                listener.onEventSelected(item);
+                dismiss();
+            }
+        });
 
 
         AlertDialog dialog = new AlertDialog.Builder(getActivity())
@@ -91,4 +115,6 @@ public class SelectEventFragment extends DialogFragment {
 
         return dialog;
     }
+
+
 }

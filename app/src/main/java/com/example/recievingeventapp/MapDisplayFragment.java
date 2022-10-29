@@ -1,11 +1,10 @@
 package com.example.recievingeventapp;
 
 import android.content.Context;
-import android.location.Location;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -15,11 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -31,18 +26,23 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 
 public class MapDisplayFragment extends Fragment
-        implements OnMapReadyCallback {
+        implements OnMapReadyCallback,
+        SelectEventFragment.Listener
+        {
 
     private static final String CODE_KEY = "code";
+    private static final String EVENT_KEY = "event";
+    private FirebaseAccessor.EventType currentType;
     private GoogleMap map;
 
-    public static class EventItem
+
+
+
+            public static class EventItem
     {
         private Double latitude;
         private Double longitude;
@@ -124,12 +124,15 @@ public class MapDisplayFragment extends Fragment
         public void logOut();
     }
 
+
     private static final String PHONE_NUMBER_KEY = "phone number";
     private static final String TAG = "MapDisplayFragment";
 
 
     private RequestHandler requester = new RequestHandler();
     private LogOutHandler logOutHandler;
+    private SelectEventFragment.Listener listener;
+
     private MapView mapView;
 //    private String phoneNumber;
 
@@ -142,12 +145,18 @@ public class MapDisplayFragment extends Fragment
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         logOutHandler = (LogOutHandler) getActivity();
+        listener = (SelectEventFragment.Listener) getActivity();
     }
 
-    public static MapDisplayFragment newInstance() {
+    @Override
+    public void onEventSelected(FirebaseAccessor.EventType event) {
+        listener.onEventSelected(event);
+    }
+
+    public static MapDisplayFragment newInstance(FirebaseAccessor.EventType currentEvent) {
         MapDisplayFragment fragment = new MapDisplayFragment();
         Bundle args = new Bundle();
-//        args.putString(PHONE_NUMBER_KEY, phoneNumber);
+        args.putString(EVENT_KEY, currentEvent.name());
 //        args.putLong(CODE_KEY, code);
         fragment.setArguments(args);
         return fragment;
@@ -164,6 +173,7 @@ public class MapDisplayFragment extends Fragment
 //
 //                this.setMap(code);
 //            }
+            currentType = FirebaseAccessor.EventType.valueOf(getArguments().getString(EVENT_KEY));
         }
         setHasOptionsMenu(true);
     }
@@ -173,7 +183,6 @@ public class MapDisplayFragment extends Fragment
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_map_display, container, false);
-        getActivity().setTheme(R.style.active_shooting_theme);
         mapView = (MapView) v.findViewById(R.id.mapView);
         mapView.onCreate(getArguments());
         mapView.onResume();
@@ -183,7 +192,7 @@ public class MapDisplayFragment extends Fragment
             e.printStackTrace();
         }
         mapView.getMapAsync(this);
-
+        updateTheme(v, false);
         Button events = v.findViewById(R.id.select_event);
         events.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,6 +204,16 @@ public class MapDisplayFragment extends Fragment
     }
 
 
+    private void updateTheme(View v, boolean shouldRefresh)
+    {
+        Button events = v.findViewById(R.id.select_event);
+        events.setBackgroundColor(getResources().getColor(currentType.COLOR_ID));
+        Drawable icon = getResources().getDrawable(currentType.ICON_ID);
+        icon.setTint(getResources().getColor(R.color.white));
+        icon.setBounds(0, 0, (int) getResources().getDimension(R.dimen.mediumIconSize), (int) getResources().getDimension(R.dimen.mediumIconSize));
+        events.setCompoundDrawables(icon, null, null,null );
+        events.setText(currentType.NAME_ID);
+    }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -216,37 +235,7 @@ public class MapDisplayFragment extends Fragment
             case R.id.selectAreaCode:
 //                SelectAreaCodeFragment.newInstance(phoneNumber).show(getChildFragmentManager(), TAG);
                 break;
-            case R.id.logOut:
-                requester.runRequest(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                new FirebaseAccessor()
-                                        .unsubscribeToAreaCodes
-                                                (
-                                                        getContext(),
-//                                                        phoneNumber,
-                                                        new FirebaseAccessor.FirebaseListener()
-                                                        {
 
-                                                            @Override
-                                                            public void onSuccess(String successMessage) {
-                                                                Toast.makeText(getContext(), successMessage, Toast.LENGTH_SHORT).show();
-                                                                logOutHandler.logOut();
-                                                            }
-
-                                                            @Override
-                                                            public void onFailure(String errorMessage) {
-                                                                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        }
-                                                );
-                            }
-                        },
-                        0,
-                        false
-                );
-                break;
             case R.id.refreshCodes:
                 requester.runRequest(new Runnable() {
                     @Override
@@ -290,4 +279,7 @@ public class MapDisplayFragment extends Fragment
     {
 
     }
+
+
+
 }

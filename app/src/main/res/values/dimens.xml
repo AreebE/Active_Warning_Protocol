@@ -3,5 +3,5 @@
     <dimen name="phoneHintSize">32dp</dimen>
     <dimen name="loginSubmitSize">24dp</dimen>
     <dimen name="subscribeSize">24dp</dimen>
-
+    <dimen name="mediumIconSize">40dp</dimen>
 </resources>

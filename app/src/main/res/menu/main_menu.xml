@@ -4,25 +4,24 @@
     <item android:id="@+id/addAreaCode"
         android:title="@string/addAreaCode"
         android:icon="@android:drawable/ic_menu_add"
+        android:iconTint="@color/white"
         app:showAsAction="always"/>
 
     <item android:id="@+id/deleteAreaCode"
         android:title="@string/deleteAreaCode_title"
         android:icon="@android:drawable/ic_menu_delete"
+        android:iconTint="@color/white"
         app:showAsAction="always"/>
 
     <item android:id="@+id/refreshCodes"
         android:title="@string/refreshCodes"
         android:icon="@android:drawable/ic_menu_rotate"
-        app:showAsAction="always"/>
-
-    <item android:id="@+id/logOut"
-        android:title="@string/logOut"
-        android:icon="@android:drawable/ic_menu_set_as"
+        android:iconTint="@color/white"
         app:showAsAction="always"/>
 
     <item android:id="@+id/selectAreaCode"
         android:title="@string/selectAreaCode_title"
+        android:iconTint="@color/white"
         android:icon="@android:drawable/ic_menu_mapmode"
         app:showAsAction="always"/>
 </menu>
