@@ -1,0 +1,24 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="75dp"
+    android:height="75dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+  <path
+      android:fillColor="@color/lightning_event"
+      android:pathData="M73.33,26.67c-3.26,-7.83 -10.98,-13.33 -20,-13.33c-12.42,0 -22.83,8.51 -25.79,20h-4.21C15.97,33.33 10,39.3 10,46.67C10,54.03 15.97,60 23.33,60H31.4l9.45,-28.33H64.05l-6.66,16.67H70L61.25,60h12.08C82.54,60 90,52.54 90,43.33C90,34.13 82.54,26.67 73.33,26.67z"/>
+  <path
+      android:fillColor="@color/lightning_event"
+      android:pathData="M56.67,36.67l-12.22,0l-7.78,23.33l10,0l-6.67,20l20,-26.67l-9.99,0z"/>
+  <path
+      android:fillColor="@color/lightning_event"
+      android:pathData="M14.44,66.67l-4.44,13.33l7.03,0l4.44,-13.33z"/>
+  <path
+      android:fillColor="@color/lightning_event"
+      android:pathData="M72.98,66.67l-4.45,13.33l7.03,0l4.45,-13.33z"/>
+  <path
+      android:fillColor="@color/lightning_event"
+      android:pathData="M26.31,73.33l-4.44,13.33l7.03,0l4.44,-13.33z"/>
+  <path
+      android:fillColor="@color/lightning_event"
+      android:pathData="M56.31,73.33l-4.45,13.33l7.03,0l4.44,-13.33z"/>
+</vector>

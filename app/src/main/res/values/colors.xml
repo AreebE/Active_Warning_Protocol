@@ -9,7 +9,19 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="badge_color">#5EA552</color>
-    <color name="button_color">#fc5000</color>
+
+    <color name="shoot_color">#EC530D</color>
+    <color name="fire_color">#2F4F4F</color>
+    <color name="flood_event">#2E8B57</color>
+    <color name="lightning_event">#DB7093</color>
+    <color name="earthquake_event">#8B4513</color>
+    <color name="tornado_event">#DAA520</color>
+    <color name="chemical_event">#4B0082</color>
+    <color name="snowstorm_event">#87CEFA</color>
+    <color name="avalanche_event">#1E90FF</color>
+    <color name="heat_wave_event">#C71585</color>
+    <color name="cold_wave_event">#7B68EE</color>
+    <color name="gray">#ACACAC</color>
 
 
 </resources>

@@ -20,4 +20,20 @@
     <string name="signUp">Sign Up</string>
     <string name="subscription">Sign Up - Active Shooter Alert Platform</string>
     <string name="register">Register</string>
+
+<!--    Event Types-->
+    <string name="shooting_name">Active Threat</string>
+    <string name="fire_name">Fire</string>
+    <string name="flood_name">Flood</string>
+    <string name="lightning_name">Lightning</string>
+    <string name="earthquake_name">Earthquake</string>
+    <string name="tornado_name">Tornado</string>
+    <string name="chemical_name">Chemical</string>
+    <string name="snowstorm_name">Snowstorm</string>
+    <string name="avalanche_name">Avalanche</string>
+    <string name="heat_wave_name">Heat Wave</string>
+    <string name="cold_wave_name">Cold Wave</string>
+    <string name="report">Report</string>
+
+
 </resources>

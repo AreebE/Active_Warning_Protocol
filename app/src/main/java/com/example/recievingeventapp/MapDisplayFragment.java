@@ -5,6 +5,7 @@ import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -14,6 +15,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -24,6 +30,8 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -78,6 +86,7 @@ public class MapDisplayFragment extends Fragment
                                 .getEvents(
                                         getContext(),
                                         code,
+                                        FirebaseAccessor.SHOOTING_EVENT,
                                         items,
                                         new FirebaseAccessor.FirebaseListener()
                                         {
@@ -122,7 +131,7 @@ public class MapDisplayFragment extends Fragment
     private RequestHandler requester = new RequestHandler();
     private LogOutHandler logOutHandler;
     private MapView mapView;
-    private String phoneNumber;
+//    private String phoneNumber;
 
     public MapDisplayFragment() {
         // Required empty public constructor
@@ -135,11 +144,11 @@ public class MapDisplayFragment extends Fragment
         logOutHandler = (LogOutHandler) getActivity();
     }
 
-    public static MapDisplayFragment newInstance(String phoneNumber, long code) {
+    public static MapDisplayFragment newInstance() {
         MapDisplayFragment fragment = new MapDisplayFragment();
         Bundle args = new Bundle();
-        args.putString(PHONE_NUMBER_KEY, phoneNumber);
-        args.putLong(CODE_KEY, code);
+//        args.putString(PHONE_NUMBER_KEY, phoneNumber);
+//        args.putLong(CODE_KEY, code);
         fragment.setArguments(args);
         return fragment;
     }
@@ -148,13 +157,13 @@ public class MapDisplayFragment extends Fragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            phoneNumber = getArguments().getString(PHONE_NUMBER_KEY);
-            long code = getArguments().getLong(CODE_KEY);
-            if (code != -1)
-            {
-
-                this.setMap(code);
-            }
+//            phoneNumber = getArguments().getString(PHONE_NUMBER_KEY);
+//            long code = getArguments().getLong(CODE_KEY);
+//            if (code != -1)
+//            {
+//
+//                this.setMap(code);
+//            }
         }
         setHasOptionsMenu(true);
     }
@@ -164,6 +173,7 @@ public class MapDisplayFragment extends Fragment
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_map_display, container, false);
+        getActivity().setTheme(R.style.active_shooting_theme);
         mapView = (MapView) v.findViewById(R.id.mapView);
         mapView.onCreate(getArguments());
         mapView.onResume();
@@ -173,8 +183,17 @@ public class MapDisplayFragment extends Fragment
             e.printStackTrace();
         }
         mapView.getMapAsync(this);
+
+        Button events = v.findViewById(R.id.select_event);
+        events.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SelectEventFragment.newInstance().show(getChildFragmentManager(), TAG);
+            }
+        });
         return v;
     }
+
 
 
     @Override
@@ -189,13 +208,13 @@ public class MapDisplayFragment extends Fragment
         switch (item.getItemId())
         {
             case R.id.addAreaCode:
-                AddAreaCodeFragment.newInstance(phoneNumber).show(getChildFragmentManager(), TAG);
+//                AddAreaCodeFragment.newInstance(phoneNumber).show(getChildFragmentManager(), TAG);
                 break;
             case R.id.deleteAreaCode:
-                RemoveAreaCodeFragment.newInstance(phoneNumber).show(getChildFragmentManager(), TAG);
+//                RemoveAreaCodeFragment.newInstance(phoneNumber).show(getChildFragmentManager(), TAG);
                 break;
             case R.id.selectAreaCode:
-                SelectAreaCodeFragment.newInstance(phoneNumber).show(getChildFragmentManager(), TAG);
+//                SelectAreaCodeFragment.newInstance(phoneNumber).show(getChildFragmentManager(), TAG);
                 break;
             case R.id.logOut:
                 requester.runRequest(
@@ -206,7 +225,7 @@ public class MapDisplayFragment extends Fragment
                                         .unsubscribeToAreaCodes
                                                 (
                                                         getContext(),
-                                                        phoneNumber,
+//                                                        phoneNumber,
                                                         new FirebaseAccessor.FirebaseListener()
                                                         {
 
@@ -235,7 +254,7 @@ public class MapDisplayFragment extends Fragment
                         new FirebaseAccessor().subscribeToAreaCodes
                                 (
                                         getContext(),
-                                        phoneNumber,
+//                                        phoneNumber,
                                         new FirebaseAccessor.FirebaseListener()
                                         {
                                             @Override
@@ -265,5 +284,10 @@ public class MapDisplayFragment extends Fragment
         markers.title(e.getDesc());
         map.addMarker(markers);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(markers.getPosition(), 10));
+    }
+
+    private void createReport(String description, int type, String areaCode)
+    {
+
     }
 }

@@ -19,8 +19,10 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
 
-public class BackgroundRecieverService extends FirebaseMessagingService
+
+public class BackgroundReceiverService extends FirebaseMessagingService
 {
 
     public static final String AREA_CODE = "area code";
@@ -28,7 +30,7 @@ public class BackgroundRecieverService extends FirebaseMessagingService
     private static final String CHANNEL_ID = "awero9";
     private static final String TAG = "BackgroundReciever";
 
-    public BackgroundRecieverService()
+    public BackgroundReceiverService()
     {
 
         FirebaseMessaging.getInstance().subscribeToTopic("")
@@ -47,33 +49,33 @@ public class BackgroundRecieverService extends FirebaseMessagingService
     @Override
     public void onMessageReceived(@NonNull RemoteMessage message) {
         super.onMessageReceived(message);
-
+        Log.d(TAG, "RECIEVED A MESSAGE, WOOO");
         Intent i = new Intent(this, RecieverActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        System.out.println(message.toString() + " -- " + message.getData().toString());
-        System.out.println(message.getData().get("code"));
-        i.putExtra(RecieverActivity.CODE_KEY, message.getData().get("code"));
+//        System.out.println(message.toString() + " -- " + message.getData().toString());
+//        System.out.println(message.getData().get("code"));
+        Map<String, String> dataReceived = message.getData();
+        i.putExtra(RecieverActivity.CODE_KEY, message.getData().get(FirebaseAccessor.EVENT_CODE_KEY));
 
-        System.out.println(i);
-        System.out.println(i.getStringExtra("code"));
+//        System.out.println(i);
+//        System.out.println(i.getStringExtra("code"));
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, PendingIntent.FLAG_IMMUTABLE);
-        Log.d("TEST", "recieved a notification");
+//        Log.d("TEST", "recieved a notification");
         NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "testChannel", NotificationManager.IMPORTANCE_DEFAULT);
         channel.setDescription("Test a first ragam");
         NotificationManager manager = getSystemService(NotificationManager.class);
         manager.createNotificationChannel(channel);
-        RemoteMessage.Notification dataRecieved =  message.getNotification();
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle(dataRecieved.getTitle())
-                .setContentText(dataRecieved.getBody())
+                .setContentTitle(dataReceived.get(FirebaseAccessor.TITLE_KEY))
+                .setContentText(dataReceived.get(FirebaseAccessor.BODY_KEY))
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .build();
 
         manager.notify(0, notification);
 
-        message.getData();
+//        message.getData();
     }
 
     @Override

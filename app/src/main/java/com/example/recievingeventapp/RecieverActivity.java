@@ -29,6 +29,7 @@ public class RecieverActivity extends AppCompatActivity
     private String phoneNumber;
     private static final String TAG = "RecieverActivity";
     private SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,67 +48,24 @@ public class RecieverActivity extends AppCompatActivity
 //
 //        System.out.println(getIntent().getLongExtra(CODE_KEY, -1));
 //        Log.d(TAG, preferences.getString(PHONE_NUMBER_KEY, null));
-        phoneNumber = preferences.getString(PHONE_NUMBER_KEY, null);
-        if (phoneNumber != null)
-        {
-            onLogin(phoneNumber);
-        }
-        else
-        {
-            logOut();
-        }
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction()
+                .replace(R.id.fragmentContainerView, MapDisplayFragment.newInstance(), TAG)
+                .commit();
     }
 
     @Override
     public void onLogin(String phoneNumber) {
 
-        long code = -1;
-        try
-        {
-            code = Long.parseLong((String) getIntent().getExtras().get(CODE_KEY));
-        } catch (NumberFormatException|NullPointerException nfe)
-        {
-            Log.d(TAG, nfe.toString());
-
-            try {
-                code = Long.parseLong(getIntent().getStringExtra(CODE_KEY));
-
-            } catch (NumberFormatException|NullPointerException npe)
-            {
-                Log.d(TAG, npe.toString());
-
-            }
-        } catch (ClassCastException cce)
-        {
-            code = getIntent().getExtras().getLong(CODE_KEY);
-        }
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction()
-                .replace(R.id.fragmentContainerView, MapDisplayFragment.newInstance(phoneNumber, code), TAG)
-                .commit();
-        this.phoneNumber = phoneNumber;
-
-        SharedPreferences.Editor writer = preferences.edit();
-        writer.putString(PHONE_NUMBER_KEY, this.phoneNumber);
-        writer.commit();
     }
 
     @Override
     public void logOut() {
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction()
-                .replace(R.id.fragmentContainerView, LoginFragment.newInstance(), TAG)
-                .commit();
-        SharedPreferences.Editor writer = preferences.edit();
-        writer.putString(PHONE_NUMBER_KEY, null);
-        writer.commit();
-    }
 
+    }
 
     @Override
     public void setCode(Long code) {
-        FragmentManager manager = getSupportFragmentManager();
-        MapDisplayFragment mapDisplayFragment = (MapDisplayFragment) manager.findFragmentById(R.id.fragmentContainerView);
-        mapDisplayFragment.setMap(code);
+
     }
 }

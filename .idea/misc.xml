@@ -4,16 +4,32 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/avalanche_icon.xml" value="0.1925" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/badge.xml" value="0.1575" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/chemical_icon.xml" value="0.1925" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/cold_wave_icon.xml" value="0.1925" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/earthquake_icon.xml" value="0.1925" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/empty.xml" value="0.1575" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/event_selection.xml" value="0.1" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/fire_icon.xml" value="0.1925" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/flood_icon.xml" value="0.1925" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/heat_wave.xml" value="0.1" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1925" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/lightning_icon.xml" value="0.1925" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/report_flag.xml" value="0.1925" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/shooter_icon.xml" value="0.1925" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/snowstorm_icon.xml" value="0.1925" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/drawable/tornado_icon.xml" value="0.1925" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/activity_main.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/code_item.xml" value="0.14791666666666667" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/event_selection.xml" value="0.1" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_add_area_code.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_create_user.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_login.xml" value="0.14791666666666667" />
-        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_map_display.xml" value="0.14791666666666667" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_map_display.xml" value="0.1" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_remove_area_code.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_select_area_code.xml" value="0.14791666666666667" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_select_event.xml" value="0.13496376811594202" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/menu/login_menu.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/menu/main_menu.xml" value="0.4" />
       </map>

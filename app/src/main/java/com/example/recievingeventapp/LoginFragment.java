@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 
 public class LoginFragment extends Fragment {
 
@@ -54,7 +56,14 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View displayView = inflater.inflate(R.layout.fragment_login, container, false);
         EditText phoneNumber = displayView.findViewById(R.id.phoneNumber);
-
+        new FirebaseAccessor().createEvent
+                (
+                        "First Cloud",
+                        "206",
+                        FirebaseAccessor.SHOOTING_EVENT,
+                        "I want to make a test",
+                        new LatLng(24.4020, 49.3103),
+                        getActivity());
         Button loginButton = displayView.findViewById(R.id.login_button);
         Log.d(TAG, loginButton.toString());
         loginButton.setOnClickListener(new View.OnClickListener() {
