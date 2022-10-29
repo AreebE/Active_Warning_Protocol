@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+<!--sss-->
     <ListView android:id="@+id/list_of_events"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
