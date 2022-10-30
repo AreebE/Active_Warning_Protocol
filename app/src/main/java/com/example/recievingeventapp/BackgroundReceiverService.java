@@ -4,12 +4,10 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 
@@ -24,8 +22,6 @@ import java.util.Map;
 
 public class BackgroundReceiverService extends FirebaseMessagingService
 {
-
-    public static final String AREA_CODE = "area code";
 
     private static final String CHANNEL_ID = "awero9";
     private static final String TAG = "BackgroundReciever";
@@ -55,24 +51,30 @@ public class BackgroundReceiverService extends FirebaseMessagingService
 //        System.out.println(message.toString() + " -- " + message.getData().toString());
 //        System.out.println(message.getData().get("code"));
         Map<String, String> dataReceived = message.getData();
-        i.putExtra(RecieverActivity.CODE_KEY, message.getData().get(FirebaseAccessor.EVENT_CODE_KEY));
+        i.putExtra(RecieverActivity.LOCALITY_KEY, dataReceived.get(FirebaseAccessor.LOCALITY_KEY));
+        i.putExtra(RecieverActivity.EVENT_KEY, dataReceived.get(FirebaseAccessor.EVENT_TYPE_KEY));
+        i.putExtra(RecieverActivity.LAT_KEY, dataReceived.get(FirebaseAccessor.LAT_KEY));
+        i.putExtra(RecieverActivity.LON_KEY, dataReceived.get(FirebaseAccessor.LONG_KEY));
+
+        FirebaseAccessor.EventType type = FirebaseAccessor.EventType.valueOf(dataReceived.get(FirebaseAccessor.EVENT_TYPE_KEY));
 
 //        System.out.println(i);
 //        System.out.println(i.getStringExtra("code"));
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, PendingIntent.FLAG_IMMUTABLE);
 //        Log.d("TEST", "recieved a notification");
-        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "testChannel", NotificationManager.IMPORTANCE_DEFAULT);
+
+
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "testChannel", NotificationManager.IMPORTANCE_HIGH);
         channel.setDescription("Test a first ragam");
         NotificationManager manager = getSystemService(NotificationManager.class);
         manager.createNotificationChannel(channel);
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle(dataReceived.get(FirebaseAccessor.TITLE_KEY))
+                .setSmallIcon(type.ICON_ID)
+                .setContentTitle(getResources().getString(R.string.app_name) +  " - " + getResources().getString(type.NAME_ID))
                 .setContentText(dataReceived.get(FirebaseAccessor.BODY_KEY))
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .build();
-
         manager.notify(0, notification);
 
 //        message.getData();

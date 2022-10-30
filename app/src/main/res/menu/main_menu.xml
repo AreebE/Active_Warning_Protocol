@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/addAreaCode"
+    <item android:id="@+id/addLocality"
         android:title="@string/addAreaCode"
         android:icon="@android:drawable/ic_menu_add"
-        android:iconTint="@color/white"
+        android:iconTint="@color/black"
+        android:iconTintMode="src_atop"
         app:showAsAction="always"/>
 
-    <item android:id="@+id/deleteAreaCode"
-        android:title="@string/deleteAreaCode_title"
+    <item android:id="@+id/removeLocality"
+        android:title="@string/remove_locality_title"
         android:icon="@android:drawable/ic_menu_delete"
-        android:iconTint="@color/white"
+        android:iconTint="@color/black"
+        android:iconTintMode="src_atop"
         app:showAsAction="always"/>
 
-    <item android:id="@+id/refreshCodes"
-        android:title="@string/refreshCodes"
-        android:icon="@android:drawable/ic_menu_rotate"
-        android:iconTint="@color/white"
-        app:showAsAction="always"/>
-
-    <item android:id="@+id/selectAreaCode"
+    <item android:id="@+id/selectArea"
         android:title="@string/selectAreaCode_title"
-        android:iconTint="@color/white"
+        android:iconTint="@color/black"
         android:icon="@android:drawable/ic_menu_mapmode"
+        android:iconTintMode="src_atop"
         app:showAsAction="always"/>
 </menu>

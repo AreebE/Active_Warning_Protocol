@@ -24,12 +24,17 @@
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/code_item.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/event_selection.xml" value="0.1" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_add_area_code.xml" value="0.14791666666666667" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_add_locality.xml" value="0.10208333333333333" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_create_user.xml" value="0.14791666666666667" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_delete_area_code.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_login.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_map_display.xml" value="0.1" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_remove_area_code.xml" value="0.14791666666666667" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_remove_locality.xml" value="0.10208333333333333" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_report.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_select_area_code.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_select_event.xml" value="0.13496376811594202" />
+        <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/layout/fragment_subscription.xml" value="0.19384057971014493" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/menu/login_menu.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/Areeb Emran/AndroidStudioProjects/RecievingEventApp/app/src/main/res/menu/main_menu.xml" value="0.4" />
       </map>

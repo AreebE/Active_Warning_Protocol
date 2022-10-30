@@ -2,9 +2,9 @@
     <string name="app_name">A.W.P.</string>
 
     <string name="addAreaCode">Add</string>
-    <string name="addAreaCode_title">Subscribe to Area</string>
-    <string name="deleteAreaCode">Delete</string>
-    <string name="deleteAreaCode_title">Unsubscribe to an Area</string>
+    <string name="addLocality_title">Subscribe to Area</string>
+    <string name="removeLocality">Delete</string>
+    <string name="remove_locality_title">Unsubscribe to an Area</string>
     <string name="selectAreaCode">Select</string>
     <string name="selectAreaCode_title">Select an Area</string>
 
@@ -21,7 +21,7 @@
     <string name="subscription">Sign Up - Active Shooter Alert Platform</string>
     <string name="register">Register</string>
 
-<!--    Event Types-->
+    <!--    Event Types-->
     <string name="shooting_name">Active Threat</string>
     <string name="fire_name">Fire</string>
     <string name="flood_name">Flood</string>
@@ -34,6 +34,13 @@
     <string name="heat_wave_name">Heat Wave</string>
     <string name="cold_wave_name">Cold Wave</string>
     <string name="report">Report</string>
+    <string name="unsuscribeAreaCode">Unsuscribe to Area</string>
+    <string name="suscribeAreaCode">Suscribe to Area</string>
+    <string name="subscribeAreaCode">Subscribe to Area</string>
+    <string name="report_event">Report an Event:</string>
+    <string name="contentForReport">Details:</string>
+    <string name="finalize_report">Finalize Report</string>
+    <string name="submit_report">Submit Report</string>
 
 
 </resources>

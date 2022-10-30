@@ -22,6 +22,7 @@
     <color name="heat_wave_event">#C71585</color>
     <color name="cold_wave_event">#7B68EE</color>
     <color name="gray">#ACACAC</color>
+    <color name="lightGray">#D8D8D8</color>
 
 
 </resources>

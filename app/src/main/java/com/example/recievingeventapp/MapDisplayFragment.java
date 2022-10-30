@@ -1,7 +1,10 @@
 package com.example.recievingeventapp;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,7 +29,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class MapDisplayFragment extends Fragment
@@ -34,15 +39,15 @@ public class MapDisplayFragment extends Fragment
         SelectEventFragment.Listener
         {
 
-    private static final String CODE_KEY = "code";
     private static final String EVENT_KEY = "event";
     private FirebaseAccessor.EventType currentType;
     private GoogleMap map;
+    private boolean inSelectMode;
+    private Menu menu;
 
 
 
-
-            public static class EventItem
+    public static class EventItem
     {
         private Double latitude;
         private Double longitude;
@@ -75,7 +80,7 @@ public class MapDisplayFragment extends Fragment
         }
     }
 
-    public void setMap(Long code)
+    public void setMap(String locality)
     {
         requester.runRequest(
                 new Runnable() {
@@ -85,8 +90,8 @@ public class MapDisplayFragment extends Fragment
                         new FirebaseAccessor()
                                 .getEvents(
                                         getContext(),
-                                        code,
-                                        FirebaseAccessor.SHOOTING_EVENT,
+                                        locality,
+                                        currentType,
                                         items,
                                         new FirebaseAccessor.FirebaseListener()
                                         {
@@ -117,6 +122,28 @@ public class MapDisplayFragment extends Fragment
     public void onMapReady(GoogleMap googleMap) {
         this.map = googleMap;
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.090200, -100.712900), 3.5f));
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull LatLng latLng) {
+                if (inSelectMode) {
+                    inSelectMode = false;
+                    Geocoder coder = new Geocoder(getActivity(), Locale.getDefault());
+                    Address address = null;
+                    try {
+                        address = coder.getFromLocation(latLng.latitude, latLng.longitude, 1).get(0);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    if (address != null && "US".equals(address.getCountryCode())) {
+                        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 7.75f));
+                        setMap(address.getLocality());
+                    }
+                    Drawable icon = menu.findItem(R.id.selectArea).getIcon();
+                    Toast.makeText(getActivity(), "Deactivated select mode. Searching for events...", Toast.LENGTH_SHORT).show();
+                    icon.setTintMode(PorterDuff.Mode.SRC_ATOP);
+                }
+            }
+        });
     }
 
     public interface LogOutHandler
@@ -200,6 +227,14 @@ public class MapDisplayFragment extends Fragment
                 SelectEventFragment.newInstance().show(getChildFragmentManager(), TAG);
             }
         });
+
+        Button reportButton = v.findViewById(R.id.report_event);
+        reportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ReportFragment.newInstance().show(getChildFragmentManager(), TAG);
+            }
+        });
         return v;
     }
 
@@ -219,6 +254,7 @@ public class MapDisplayFragment extends Fragment
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.main_menu, menu);
+        this.menu = menu;
     }
 
     @Override
@@ -226,39 +262,25 @@ public class MapDisplayFragment extends Fragment
 
         switch (item.getItemId())
         {
-            case R.id.addAreaCode:
-//                AddAreaCodeFragment.newInstance(phoneNumber).show(getChildFragmentManager(), TAG);
+            case R.id.addLocality:
+                AddLocalityFragment.newInstance().show(getChildFragmentManager(), TAG);
                 break;
-            case R.id.deleteAreaCode:
-//                RemoveAreaCodeFragment.newInstance(phoneNumber).show(getChildFragmentManager(), TAG);
+            case R.id.removeLocality:
+                RemoveLocalityFragment.newInstance().show(getChildFragmentManager(), TAG);
                 break;
-            case R.id.selectAreaCode:
-//                SelectAreaCodeFragment.newInstance(phoneNumber).show(getChildFragmentManager(), TAG);
-                break;
-
-            case R.id.refreshCodes:
-                requester.runRequest(new Runnable() {
-                    @Override
-                    public void run() {
-                        new FirebaseAccessor().subscribeToAreaCodes
-                                (
-                                        getContext(),
-//                                        phoneNumber,
-                                        new FirebaseAccessor.FirebaseListener()
-                                        {
-                                            @Override
-                                            public void onSuccess(String successMessage) {
-                                                Toast.makeText(getContext(), successMessage, Toast.LENGTH_SHORT).show();
-                                            }
-
-                                            @Override
-                                            public void onFailure(String errorMessage) {
-                                                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                );
-                    }
-                }, 60, false);
+            case R.id.selectArea:
+                Drawable icon = item.getIcon();
+                if (inSelectMode)
+                {
+                    Toast.makeText(getActivity(), "Deactivated select mode.", Toast.LENGTH_SHORT).show();
+                    icon.setTintMode(PorterDuff.Mode.SRC_ATOP);
+                }
+                else
+                {
+                    Toast.makeText(getActivity(), "Activated select mode. Tap on the map to get events.", Toast.LENGTH_SHORT).show();
+                    icon.setTintMode(PorterDuff.Mode.SCREEN);
+                }
+                inSelectMode = !inSelectMode;
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -275,10 +297,7 @@ public class MapDisplayFragment extends Fragment
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(markers.getPosition(), 10));
     }
 
-    private void createReport(String description, int type, String areaCode)
-    {
 
-    }
 
 
 

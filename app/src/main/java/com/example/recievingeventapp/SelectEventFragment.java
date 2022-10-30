@@ -10,12 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -110,7 +107,7 @@ public class SelectEventFragment extends DialogFragment {
 
         AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setView(v)
-                .setTitle(Html.fromHtml("<font color='#fc5000'>" + getResources().getString(R.string.addAreaCode_title) +  "</font>"))
+                .setTitle(Html.fromHtml("<font color='#fc5000'>" + getResources().getString(R.string.addLocality_title) +  "</font>"))
                 .create();
 
         return dialog;
